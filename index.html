@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO-TP - Innovative Software & Technology Programming (School ICT Programming Club)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        :root {
+            --primary-purple: #8a2be2;
+            --secondary-pink: #ff69b4;
+            --light-purple: #9370db;
+            --dark-purple: #4b0082;
+            --gradient: linear-gradient(135deg, #ff69b4, #9370db, #8a2be2);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --shadow: 0 8px 25px rgba(147, 112, 219, 0.15);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 20%, #ffb6c1 40%, #da70d6 60%, #9370db 80%, #8a2be2 100%);
+            color: var(--dark-purple);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+
+        .magical-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.6;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 25s infinite ease-in-out;
+            filter: blur(8px);
+        }
+
+        .wave-1 {
+            width: 500px;
+            height: 500px;
+            top: -150px;
+            left: -150px;
+            animation-delay: 0s;
+            background: rgba(147, 112, 219, 0.3);
+        }
+
+        .wave-2 {
+            width: 400px;
+            height: 400px;
+            top: 60%;
+            right: -100px;
+            animation-delay: 5s;
+            background: rgba(255, 182, 193, 0.4);
+        }
+
+        .wave-3 {
+            width: 350px;
+            height: 350px;
+            bottom: -100px;
+            left: 40%;
+            animation-delay: 10s;
+            background: rgba(186, 85, 211, 0.35);
+        }
+
+        .moon {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatMoon 30s infinite ease-in-out;
+            box-shadow: 0 0 50px rgba(147, 112, 219, 0.3);
+        }
+
+        .moon-1 {
+            width: 180px;
+            height: 180px;
+            top: 15%;
+            right: 10%;
+            animation-delay: 2s;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 182, 193, 0.6), rgba(147, 112, 219, 0.4));
+        }
+
+        .star {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: twinkle 4s infinite ease-in-out;
+        }
+
+        .star-1 {
+            width: 20px;
+            height: 20px;
+            top: 25%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .star-2 {
+            width: 15px;
+            height: 15px;
+            top: 65%;
+            right: 25%;
+            animation-delay: 1s;
+        }
+
+        .heart {
+            position: absolute;
+            animation: heartbeat 8s infinite ease-in-out;
+        }
+
+        .heart-1 {
+            width: 35px;
+            height: 35px;
+            top: 35%;
+            left: 25%;
+            transform: rotate(-15deg);
+            animation-delay: 0s;
+            background: rgba(255, 105, 180, 0.6);
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -17px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: 17px;
+        }
+
+        .heart-1:before,
+        .heart-1:after {
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 105, 180, 0.6);
+        }
+
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            33% { transform: translateY(-30px) rotate(5deg) scale(1.05); }
+            66% { transform: translateY(20px) rotate(-5deg) scale(0.95); }
+        }
+
+        @keyframes floatMoon {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-40px) translateX(20px) rotate(10deg); }
+            50% { transform: translateY(20px) translateX(-20px) rotate(-10deg); }
+            75% { transform: translateY(-20px) translateX(10px) rotate(5deg); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1) rotate(-15deg); }
+            25% { transform: scale(1.1) rotate(-12deg); }
+            50% { transform: scale(1.05) rotate(-18deg); }
+            75% { transform: scale(1.15) rotate(-10deg); }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+
+        .bubble-text {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 3px 3px 6px rgba(147, 112, 219, 0.3);
+            font-weight: bold;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+
+        .navbar {
+            position: fixed;
+            top: 0; 
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 18px 20px;
+            z-index: 1000;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(147, 112, 219, 0.2);
+            border-bottom: 3px solid rgba(255, 105, 180, 0.3);
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px rgba(147, 112, 219, 0.25);
+        }
+        
+        .navbar-left { 
+            position: absolute; 
+            left: 20px; 
+            display: flex; 
+            align-items: center; 
+        }
+        .navbar-left a { 
+            color: var(--light-purple); 
+            text-decoration: none; 
+            font-weight: 800; 
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(147, 112, 219, 0.2);
+            transition: all 0.3s ease;
+        }
+        .navbar-left a:hover {
+            transform: scale(1.05);
+            text-shadow: 2px 2px 8px rgba(147, 112, 219, 0.4);
+        }
+        .navbar-center { 
+            display: flex; 
+            gap: 25px; 
+            align-items: center; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+        }
+        .navbar-center a { 
+            color: var(--dark-purple); 
+            text-decoration: none; 
+            padding: 12px 20px; 
+            border-radius: 25px; 
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(147, 112, 219, 0.15));
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .navbar-center a:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.5s;
+        }
+        .navbar-center a:hover:before {
+            left: 100%;
+        }
+        .navbar-center a:hover { 
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.4), rgba(147, 112, 219, 0.3));
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(147, 112, 219, 0.3);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 150px 20px 50px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 { 
+            margin-bottom: 50px; 
+            font-size: 48px;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Section Titles */
+        .section-title {
+            color: var(--primary-purple);
+            margin-bottom: 30px;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(147, 112, 219, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+            padding: 60px 40px;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--glass-border);
+            backdrop-filter: blur(1px);
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+        }
+
+        .hero-text {
+            text-align: center;
+            animation: slideInLeft 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: var(--dark-purple);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(147, 112, 219, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark-purple);
+            border: 2px solid var(--dark-purple);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 20px rgba(147, 112, 219, 0.4);
+            animation: pulse 0.5s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark-purple);
+            color: white;
+        }
+
+
+        .background-cards {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(147, 112, 219, 0.2);
+            padding: 25px;
+            animation: float 8s ease-in-out infinite;
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+            opacity: 0.7;
+            pointer-events: auto;
+        }
+
+        .floating-card:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(147, 112, 219, 0.3);
+            z-index: 10;
+        }
+
+        .code-snippet {
+            background: rgba(147, 112, 219, 0.1);
+            color: var(--dark-purple);
+            padding: 20px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            border-left: 4px solid var(--secondary-pink);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .card-1 { top: 5%; left: 3%; width: 380px; height: 240px; animation-delay: 0s; }
+        .card-2 { top: 8%; right: 5%; width: 400px; height: 260px; animation-delay: 1s; }
+        .card-3 { top: 25%; left: 2%; width: 360px; height: 230px; animation-delay: 1s; }
+        .card-4 { top: 20%; right: 8%; width: 420px; height: 280px; animation-delay: 2s; }
+        .card-5 { top: 15%; left: 25%; width: 380px; height: 240px; animation-delay: 3s; }
+        .card-6 { top: 35%; right: 15%; width: 360px; height: 230px; animation-delay: 2s; }
+        .card-7 { top: 10%; left: 45%; width: 400px; height: 260px; animation-delay: 2s; }
+        .card-8 { top: 30%; left: 40%; width: 360px; height: 230px; animation-delay: 3s; }
+        .card-9 { top: 20%; right: 3%; width: 380px; height: 240px; animation-delay: 4s; }
+        .card-10 { top: 40%; left: 60%; width: 420px; height: 280px; animation-delay: 5s; }
+        .card-11 { top: 15%; right: 35%; width: 400px; height: 260px; animation-delay: 6s; }
+        .card-12 { top: 35%; right: 45%; width: 360px; height: 230px; animation-delay: 5s; }
+        .card-13 { top: 60%; left: 5%; width: 380px; height: 240px; animation-delay: 1s; }
+        .card-14 { top: 65%; right: 8%; width: 400px; height: 260px; animation-delay: 2s; }
+        .card-15 { top: 80%; left: 10%; width: 360px; height: 230px; animation-delay: 3s; }
+        .card-16 { top: 75%; right: 12%; width: 420px; height: 280px; animation-delay: 5s; }
+        .card-17 { top: 70%; left: 30%; width: 380px; height: 240px; animation-delay: 7s; }
+        .card-18 { top: 65%; left: 50%; width: 400px; height: 260px; animation-delay: 5s; }
+        .card-19 { top: 80%; left: 45%; width: 360px; height: 250px; animation-delay: 3s; }
+        .card-20 { top: 70%; right: 5%; width: 380px; height: 240px; animation-delay: 4s; }
+
+
+
+        .code-showcase {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+            margin: 50px 0;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--glass-border);
+            backdrop-filter: blur(1px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-showcase:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+        }
+
+        .code-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #1e1e3f;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 3px solid rgba(147, 112, 219, 0.5);
+            position: relative;
+        }
+
+        .code-header {
+            background: #2d2b55;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(147, 112, 219, 0.3);
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 8px;
+            margin-right: 20px;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5c5c; }
+        .dot-yellow { background: #ffbd4c; }
+        .dot-green { background: #00ca56; }
+
+        .code-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .code-content {
+            display: flex;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .line-numbers {
+            background: #2d2b55;
+            color: #a599e9;
+            padding: 20px 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: right;
+            user-select: none;
+            border-right: 1px solid rgba(147, 112, 219, 0.3);
+        }
+
+        .code-area {
+            flex: 1;
+            padding: 20px;
+            overflow: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #fff;
+            text-align: left;
+            background: #1e1e3f;
+        }
+
+        .code-line {
+            margin-bottom: 5px;
+            white-space: pre;
+        }
+
+        .code-tag { color: #ff79c6; }
+        .code-attr { color: #50fa7b; }
+        .code-value { color: #f1fa8c; }
+        .code-comment { color: #6272a4; }
+        .code-function { color: #8be9fd; }
+        .code-keyword { color: #ff79c6; }
+        .code-string { color: #f1fa8c; }
+        .code-operator { color: #ff79c6; }
+
+        .code-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .code-btn {
+            padding: 12px 25px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(147, 112, 219, 0.3);
+        }
+
+        .code-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(147, 112, 219, 0.4);
+        }
+
+
+        .topics-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: right 0.4s ease;
+            padding: 20px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            border-left: 3px solid rgba(255, 105, 180, 0.3);
+        }
+
+        .topics-sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(147, 112, 219, 0.2);
+        }
+
+        .sidebar-header h3 {
+            color: var(--primary-purple);
+            font-size: 22px;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark-purple);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-sidebar:hover {
+            color: var(--secondary-pink);
+            transform: scale(1.1);
+        }
+
+        .topic-list {
+            list-style: none;
+        }
+
+        .topic-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .topic-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(5px);
+            border-color: rgba(255, 105, 180, 0.3);
+        }
+
+        .topic-item.active {
+            background: var(--gradient);
+            color: white;
+            border-color: rgba(147, 112, 219, 0.5);
+        }
+
+
+        .website-preview {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            color: #333;
+        }
+
+        .website-preview h3 {
+            color: var(--primary-purple);
+            margin-bottom: 15px;
+            font-size: 24px;
+            border-bottom: 2px solid var(--light-purple);
+            padding-bottom: 10px;
+        }
+
+        .website-preview p {
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .website-preview .magical-container {
+            background: var(--gradient);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .website-preview .bubble-text {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .website-preview .output-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--secondary-pink);
+        }
+
+        .website-preview .output-title {
+            font-weight: bold;
+            color: var(--dark-purple);
+            margin-bottom: 8px;
+        }
+
+        /* What We Offer Section */
+        .offerings-section {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+            margin: 50px 0;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--glass-border);
+            backdrop-filter: blur(1px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offerings-section:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+        }
+
+        .offerings-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .offering-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(147, 112, 219, 0.15);
+            border: 2px solid rgba(255, 105, 180, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .offering-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(147, 112, 219, 0.25);
+            border-color: rgba(255, 105, 180, 0.4);
+        }
+
+        .offering-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .offering-card h3 {
+            color: var(--primary-purple);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .offering-card p {
+            color: var(--dark-purple);
+            line-height: 1.6;
+        }
+	
+.offering-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.offering-link h3 {
+    color: var(--primary-purple);
+    margin-bottom: 15px;
+    font-size: 22px;
+    transition: all 0.3s ease;
+}
+
+.offering-link:hover h3 {
+    color: var(--secondary-pink);
+    transform: translateY(-3px);
+}
+
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--gradient);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(147, 112, 219, 0.3);
+            z-index: 1002;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+
+        @media (max-width: 1200px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                text-align: center;
+                margin-bottom: 50px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .floating-card {
+                width: 320px !important;
+                height: 200px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main { padding: 140px 15px 40px; }
+            .navbar-left { position: static; margin-bottom: 10px; }
+            .navbar-center { flex-direction: column; gap: 12px; }
+            h1 { font-size: 36px; }
+            .section-title { font-size: 28px; }
+            .hero-text h1 { font-size: 36px; }
+            .code-content {
+                flex-direction: column;
+                height: auto;
+            }
+            .line-numbers {
+                text-align: left;
+                padding: 10px 15px;
+                border-right: none;
+                border-bottom: 1px solid rgba(147, 112, 219, 0.3);
+            }
+            .code-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            .magical-bg > div { display: none; }
+            .floating-card {
+                width: 280px !important;
+                height: 180px !important;
+                opacity: 0.6;
+            }
+            .topics-sidebar {
+                width: 300px;
+            }
+            .hero-container {
+                padding: 40px 20px;
+            }
+            .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 28px; }
+            .section-title { font-size: 24px; }
+            .hero-text h1 { font-size: 28px; }
+            .floating-card {
+                width: 240px !important;
+                height: 160px !important;
+                opacity: 0.5;
+            }
+            .topics-sidebar {
+                width: 280px;
+            }
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="magical-bg">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+        <div class="moon moon-1"></div>
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="heart heart-1"></div>
+    </div>
+
+    <!-- Large Background Floating Cards - Fixed in place -->
+    <div class="background-cards">
+        <!-- First set of cards -->
+        <div class="floating-card card-1">
+            <div class="code-snippet">
+                &lt;div class="club"&gt;<br>
+                &nbsp;&nbsp;&lt;h1&gt;ISOTP Club&lt;/h1&gt;<br>
+                &nbsp;&nbsp;&lt;p&gt;Code. Create. Collaborate.&lt;/p&gt;<br>
+                &lt;/div&gt;
+            </div>
+        </div>
+        <div class="floating-card card-2">
+            <div class="code-snippet">
+                function innovate() {<br>
+                &nbsp;&nbsp;return creativity + technology;<br>
+                }
+            </div>
+        </div>
+        <div class="floating-card card-3">
+            <div class="code-snippet">
+                .student {<br>
+                &nbsp;&nbsp;display: flex;<br>
+                &nbsp;&nbsp;justify-content: center;<br>
+                &nbsp;&nbsp;align-items: awesome;<br>
+                }
+            </div>
+        </div>
+        <div class="floating-card card-4">
+            <div class="code-snippet">
+                # Python Magic<br>
+                def create_magic():<br>
+                &nbsp;&nbsp;spell = "ISOTP"<br>
+                &nbsp;&nbsp;return f"{spell} Rocks!"
+            </div>
+        </div>
+        <div class="floating-card card-5">
+            <div class="code-snippet">
+                // JavaScript Fun<br>
+                const isotp = {<br>
+                &nbsp;&nbsp;members: 50+,<br>
+                &nbsp;&nbsp;projects: "amazing",<br>
+                &nbsp;&nbsp;fun: true<br>
+                };
+            </div>
+        </div>
+        <div class="floating-card card-6">
+            <div class="code-snippet">
+                /* CSS Animation */<br>
+                @keyframes magic {<br>
+                &nbsp;&nbsp;0% { opacity: 0; }<br>
+                &nbsp;&nbsp;100% { opacity: 1; }<br>
+                }
+            </div>
+        </div>
+        <div class="floating-card card-7">
+            <div class="code-snippet">
+                // Java Class<br>
+                public class ISOTP {<br>
+                &nbsp;&nbsp;String spirit = "innovation";<br>
+                &nbsp;&nbsp;boolean isAwesome = true;<br>
+                }
+            </div>
+        </div>
+        <div class="floating-card card-8">
+            <div class="code-snippet">
+                # Ruby Gem<br>
+                class ISOTP<br>
+                &nbsp;&nbsp;def initialize<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;@magic = true<br>
+                &nbsp;&nbsp;end<br>
+                end
+            </div>
+        </div>
+        <div class="floating-card card-9">
+            <div class="code-snippet">
+                // C++ Power<br>
+                #include &lt;iostream&gt;<br>
+                using namespace std;<br>
+                int main() {<br>
+                &nbsp;&nbsp;cout << "Hello ISOTP!";<br>
+                }
+            </div>
+        </div>
+        <div class="floating-card card-10">
+            <div class="code-snippet">
+                -- SQL Query<br>
+                SELECT * FROM members<br>
+                WHERE skill_level > 9000<br>
+                AND enthusiasm = 'max';
+            </div>
+        </div>
+        <div class="floating-card card-11">
+            <div class="code-snippet">
+                // React Component<br>
+                const ISOTPClub = () => (<br>
+                &nbsp;&nbsp;&lt;div className="magic"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;We ❤️ Code&lt;/h1&gt;<br>
+                &nbsp;&nbsp;&lt;/div&gt;<br>
+                );
+            </div>
+        </div>
+        <div class="floating-card card-12">
+            <div class="code-snippet">
+                # Data Science<br>
+                import pandas as pd<br>
+                df = pd.DataFrame({<br>
+                &nbsp;&nbsp;'fun': [100],<br>
+                &nbsp;&nbsp;'learning': [100]<br>
+                })
+            </div>
+        </div>
+        
+        <div class="floating-card card-13">
+            <div class="code-snippet">
+                // Game Development<br>
+                function updateGame() {<br>
+                &nbsp;&nbsp;player.move();<br>
+                &nbsp;&nbsp;checkCollisions();<br>
+                &nbsp;&nbsp;render();<br>
+                }
+            </div>
+        </div>
+        <div class="floating-card card-14">
+            <div class="code-snippet">
+                // Mobile App<br>
+                const App = () => {<br>
+                &nbsp;&nbsp;return (<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;View&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Text&gt;Hello ISOTP!&lt;/Text&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;/View&gt;<br>
+                &nbsp;&nbsp;);<br>
+                };
+            </div>
+        </div>
+        <div class="floating-card card-15">
+            <div class="code-snippet">
+                // API Development<br>
+                app.get('/api/projects', (req, res) => {<br>
+                &nbsp;&nbsp;res.json(projects);<br>
+                });
+            </div>
+        </div>
+        <div class="floating-card card-16">
+            <div class="code-snippet">
+                // Machine Learning<br>
+                model = Sequential()<br>
+                model.add(Dense(64, activation='relu'))<br>
+                model.add(Dense(32, activation='relu'))<br>
+                model.add(Dense(1, activation='sigmoid'))
+            </div>
+        </div>
+        <div class="floating-card card-17">
+            <div class="code-snippet">
+                // Database Design<br>
+                CREATE TABLE students (<br>
+                &nbsp;&nbsp;id INT PRIMARY KEY,<br>
+                &nbsp;&nbsp;name VARCHAR(100),<br>
+                &nbsp;&nbsp;skill_level VARCHAR(50)<br>
+                );
+            </div>
+        </div>
+        <div class="floating-card card-18">
+            <div class="code-snippet">
+                // Web Scraping<br>
+                response = requests.get(url)<br>
+                soup = BeautifulSoup(response.text, 'html.parser')<br>
+                data = soup.find_all('div', class_='content')
+            </div>
+        </div>
+        <div class="floating-card card-19">
+            <div class="code-snippet">
+                // UI/UX Design<br>
+                .user-card {<br>
+                &nbsp;&nbsp;display: flex;<br>
+                &nbsp;&nbsp;align-items: center;<br>
+                &nbsp;&nbsp;padding: 20px;<br>
+                &nbsp;&nbsp;border-radius: 12px;<br>
+                &nbsp;&nbsp;background: white;<br>
+                }
+            </div>
+        </div>
+        <div class="floating-card card-20">
+            <div class="code-snippet">
+                // Data Structures<br>
+                class LinkedList {<br>
+                &nbsp;&nbsp;constructor() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;this.head = null;<br>
+                &nbsp;&nbsp;}<br>
+                }
+            </div>
+        </div>
+    </div>
+
+
+    <div class="topics-sidebar" id="topics-sidebar">
+        <div class="sidebar-header">
+            <h3>Programming Topics</h3>
+            <button class="close-sidebar" id="close-sidebar">&times;</button>
+        </div>
+        <ul class="topic-list">
+            <li class="topic-item active" data-topic="web-dev">Web Development</li>
+            <li class="topic-item" data-topic="mobile-dev">Mobile App Development</li>
+            <li class="topic-item" data-topic="game-dev">Game Development</li>
+            <li class="topic-item" data-topic="data-science">Data Science</li>
+            <li class="topic-item" data-topic="ai-ml">AI & Machine Learning</li>
+            <li class="topic-item" data-topic="cybersecurity">Cybersecurity</li>
+        </ul>
+    </div>
+ 
+          <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="index.html" class="bubble-text">ISO-TP</a>
+        </div>
+        <nav class="navbar-center">
+            <a href="index.html">Home</a>
+            <a href="Experience_Page.html">Day-To-Day Experiences</a>
+            <a href="Achievement_Page.html">Achievements</a>
+            <a href="Activities_Page.html">Activities</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h1 class="bubble-text">Welcome to <span>ISO-TP</span> Programming Club</h1>
+                    <p>The ISOTP (Innovative Software & Technology Programming) Club is your school's premier technology community where students explore the exciting world of coding, software development, and digital innovation. Our mission is to empower students with technical skills, foster creativity, and build a collaborative environment where ideas come to life through code.</p>
+                    <p>Whether you're just starting your programming journey or you're an experienced coder, our club offers workshops, project collaborations, coding challenges, and mentorship opportunities to help you grow and excel in the digital age.</p>
+                    <div class="hero-buttons">
+                        <a href="Achievement_Page.html" class="btn btn-primary">Join Our Club</a>
+                        <a href="Activities_Page.html" class="btn btn-secondary">Explore Projects</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  Code Container Section -->
+        <section class="code-showcase">
+            <h2 class="section-title bubble-text">Explore Our Code Magic ✨</h2>
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <div class="code-dot dot-red"></div>
+                        <div class="code-dot dot-yellow"></div>
+                        <div class="code-dot dot-green"></div>
+                    </div>
+                    <div class="code-title" id="code-title">isotp-club.html</div>
+                </div>
+                <div class="code-content">
+                    <div class="line-numbers" id="line-numbers">
+                        1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30
+                    </div>
+                    <div class="code-area" id="code-area">
+                        <div class="code-line"><span class="code-tag">&lt;!DOCTYPE html&gt;</span></div>
+                        <div class="code-line"><span class="code-tag">&lt;html</span> <span class="code-attr">lang</span>=<span class="code-value">"en"</span><span class="code-tag">&gt;</span></div>
+                        <div class="code-line"><span class="code-tag">&lt;head&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;meta</span> <span class="code-attr">charset</span>=<span class="code-value">"UTF-8"</span><span class="code-tag">&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;title&gt;</span>ISOTP Programming Club<span class="code-tag">&lt;/title&gt;</span></div>
+                        <div class="code-line"><span class="code-tag">&lt;/head&gt;</span></div>
+                        <div class="code-line"><span class="code-tag">&lt;body&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-value">"magical-container"</span><span class="code-tag">&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-tag">&lt;h1</span> <span class="code-attr">class</span>=<span class="code-value">"bubble-text"</span><span class="code-tag">&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to <span class="code-tag">&lt;span&gt;</span>ISOTP<span class="code-tag">&lt;/span&gt;</span> ✨</div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-tag">&lt;/h1&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-tag">&lt;p&gt;</span>Where creativity meets code!<span class="code-tag">&lt;/p&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;/div&gt;</span></div>
+                        <div class="code-line"></div>
+                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;script&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// ISOTP Club Magic</span></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">function</span> <span class="code-function">createMagic</span>() {</div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">const</span> creativity = <span class="code-string">'limitless'</span>;</div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">const</span> technology = <span class="code-string">'powerful'</span>;</div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> creativity <span class="code-operator">+</span> technology;</div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+                        <div class="code-line"></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// Join our coding journey</span></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">const</span> isotpClub = {</div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: <span class="code-string">"ISOTP Programming Club"</span>,</div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;members: <span class="code-string">"growing"</span>,</div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;projects: <span class="code-string">"amazing"</span>,</div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fun: <span class="code-string">"unlimited"</span></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;};</div>
+                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;/script&gt;</span></div>
+                        <div class="code-line"><span class="code-tag">&lt;/body&gt;</span></div>
+                        <div class="code-line"><span class="code-tag">&lt;/html&gt;</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="code-controls">
+                <button class="code-btn" id="copy-btn">Copy Code</button>
+                <button class="code-btn" id="demo-btn">Run Demo</button>
+                <button class="code-btn" id="more-btn">View More</button>
+            </div>
+        </section>
+
+
+        <section class="offerings-section">
+            <h2 class="section-title bubble-text">What We Offer 🚀</h2>
+            <div class="offerings-container">
+                <div class="offerings-grid">
+                    <div class="offering-card">
+                        <div class="offering-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                <a href="https://www.codecademy.com/" class="offering-link">
+                        <h3>Hands-On Workshops</h3>
+                        <p>Regular coding workshops covering various programming languages and technologies. From beginner basics to advanced concepts.</p>
+                    </div>
+                    <div class="offering-card">
+                        <div class="offering-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                <a href="https://www.proofhub.com/" class="offering-link">
+                        <h3>Project Collaboration</h3>
+                        <p>Work on real-world projects with fellow students. Build your portfolio while learning teamwork and project management skills.</p>
+                    </div>
+                    <div class="offering-card">
+                        <div class="offering-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                <a href="https://www.codechef.com/contests" class="offering-link">
+                        <h3>Coding Competitions</h3>
+                        <p>Participate in hackathons and coding challenges. Test your skills against other students and win exciting prizes.</p>
+                    </div>
+                    <div class="offering-card">
+                        <div class="offering-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                <a href="https://www.technovation.org/" class="offering-link">
+                        <h3>Tech Innovation</h3>
+                        <p>Explore cutting-edge technologies like AI, machine learning, web development, and mobile app creation.</p>
+                    </div>
+                    <div class="offering-card">
+                        <div class="offering-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                <a href="https://www.libraryofcode.org/?gad_source=1&gad_campaignid=22838002461&gbraid=0AAAAA_ACA-cyvrJjuV-reEmenZbqKt3ZI&gclid=EAIaIQobChMI65vTqpi6kAMVZiR7Bx3J1yZMEAAYASAAEgL4SPD_BwE" class="offering-link">
+                        <h3>Mentorship Program</h3>
+                        <p>Get guidance from experienced coders and industry professionals. One-on-one mentorship to accelerate your learning.</p>
+                    </div>
+                    <div class="offering-card">
+                        <div class="offering-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                <a href="https://code.org/en-US/hour-of-code" class="offering-link">
+                        <h3>Regular Events</h3>
+                        <p>Weekly meetings, guest speaker sessions, tech talks, and social coding events to build our programming community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Code examples for different topics
+        const codeExamples = {
+            'web-dev': {
+                title: 'web-app.js',
+                code: `// Web Development Example
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello ISOTP Web Developers!');
+});
+
+app.listen(port, () => {
+  console.log(\`Server running at http://localhost:\${port}\`);
+});`,
+                output: `
+                    <div class="website-preview">
+                        <h3>Web Application Output</h3>
+                        <p>This web server would run on port 3000 and display:</p>
+                        <div class="output-section">
+                            <div class="output-title">Browser Output:</div>
+                            <p>Hello ISOTP Web Developers!</p>
+                        </div>
+                        <div class="output-section">
+                            <div class="output-title">Console Output:</div>
+                            <p>Server running at http://localhost:3000</p>
+                        </div>
+                    </div>
+                `
+            },
+            'mobile-dev': {
+                title: 'mobile-app.js',
+                code: `// Mobile App Development
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+const ISOTPApp = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome to ISOTP!</Text>
+      <Text style={styles.subtitle}>Mobile Development Rocks!</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8a2be2'
+  },
+  title: {
+    fontSize: 24,
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  subtitle: {
+    fontSize: 16,
+    color: 'white',
+    marginTop: 10
+  }
+});
+
+export default ISOTPApp;`,
+                output: `
+                    <div class="website-preview">
+                        <h3>Mobile App Output</h3>
+                        <p>This React Native component would render:</p>
+                        <div class="magical-container" style="background: #8a2be2; padding: 40px; margin: 20px 0;">
+                            <h3 style="color: white; font-size: 24px; margin-bottom: 10px;">Welcome to ISOTP!</h3>
+                            <p style="color: white; font-size: 16px;">Mobile Development Rocks!</p>
+                        </div>
+                        <p>The app would display a purple screen with centered white text.</p>
+                    </div>
+                `
+            },
+            'game-dev': {
+                title: 'game-script.js',
+                code: `// Game Development
+class Player {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.speed = 5;
+    this.health = 100;
+  }
+  
+  move(direction) {
+    switch(direction) {
+      case 'up':
+        this.y -= this.speed;
+        break;
+      case 'down':
+        this.y += this.speed;
+        break;
+      case 'left':
+        this.x -= this.speed;
+        break;
+      case 'right':
+        this.x += this.speed;
+        break;
+    }
+  }
+  
+  takeDamage(amount) {
+    this.health -= amount;
+    if (this.health <= 0) {
+      this.die();
+    }
+  }
+  
+  die() {
+    console.log('Game Over!');
+  }
+}
+
+const player = new Player(100, 100);`,
+                output: `
+                    <div class="website-preview">
+                        <h3>Game Development Output</h3>
+                        <p>This game code creates a player character with:</p>
+                        <div class="output-section">
+                            <div class="output-title">Player Properties:</div>
+                            <p>• Position: (100, 100)</p>
+                            <p>• Speed: 5 units per movement</p>
+                            <p>• Health: 100 points</p>
+                        </div>
+                        <div class="output-section">
+                            <div class="output-title">Game Mechanics:</div>
+                            <p>• Movement in 4 directions (up, down, left, right)</p>
+                            <p>• Health system with damage taking</p>
+                            <p>• Game over when health reaches 0</p>
+                        </div>
+                    </div>
+                `
+            },
+            'data-science': {
+                title: 'data-analysis.py',
+                code: `# Data Science Example
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# Load and explore data
+data = pd.read_csv('student_scores.csv')
+print(data.head())
+print(data.describe())
+
+# Prepare features and target
+X = data[['StudyHours']]
+y = data['Score']
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Make predictions
+predictions = model.predict(X_test)
+
+# Visualize results
+plt.scatter(X_test, y_test, color='blue')
+plt.plot(X_test, predictions, color='red')
+plt.title('Study Hours vs Score')
+plt.xlabel('Study Hours')
+plt.ylabel('Score')
+plt.show()`,
+                output: `
+                    <div class="website-preview">
+                        <h3>Data Science Output</h3>
+                        <p>This data analysis script would:</p>
+                        <div class="output-section">
+                            <div class="output-title">Data Processing:</div>
+                            <p>• Load student scores data from CSV</p>
+                            <p>• Display first 5 rows and statistics</p>
+                            <p>• Split data into training and test sets</p>
+                        </div>
+                        <div class="output-section">
+                            <div class="output-title">Machine Learning:</div>
+                            <p>• Train a linear regression model</p>
+                            <p>• Predict scores based on study hours</p>
+                            <p>• Create a scatter plot with regression line</p>
+                        </div>
+                        <div class="output-section">
+                            <div class="output-title">Visualization:</div>
+                            <p>The script would generate a plot showing the relationship between study hours and scores, with a red regression line through blue data points.</p>
+                        </div>
+                    </div>
+                `
+            },
+            'ai-ml': {
+                title: 'neural-network.py',
+                code: `# AI & Machine Learning
+import tensorflow as tf
+from tensorflow import keras
+import numpy as np
+
+# Load MNIST dataset
+mnist = keras.datasets.mnist
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+
+# Normalize pixel values
+train_images = train_images / 255.0
+test_images = test_images / 255.0
+
+# Build neural network model
+model = keras.Sequential([
+    keras.layers.Flatten(input_shape=(28, 28)),
+    keras.layers.Dense(128, activation='relu'),
+    keras.layers.Dense(10, activation='softmax')
+])
+
+# Compile model
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+# Train model
+model.fit(train_images, train_labels, epochs=5)
+
+# Evaluate model
+test_loss, test_acc = model.evaluate(test_images, test_labels)
+print(f'Test accuracy: {test_acc}')`,
+                output: `
+                    <div class="website-preview">
+                        <h3>AI & Machine Learning Output</h3>
+                        <p>This neural network would:</p>
+                        <div class="output-section">
+                            <div class="output-title">Dataset:</div>
+                            <p>• Load MNIST handwritten digit dataset (60,000 training images, 10,000 test images)</p>
+                            <p>• Normalize pixel values from 0-255 to 0-1</p>
+                        </div>
+                        <div class="output-section">
+                            <div class="output-title">Model Architecture:</div>
+                            <p>• Input layer: 784 neurons (28x28 pixels flattened)</p>
+                            <p>• Hidden layer: 128 neurons with ReLU activation</p>
+                            <p>• Output layer: 10 neurons with softmax activation (for digits 0-9)</p>
+                        </div>
+                        <div class="output-section">
+                            <div class="output-title">Training Results:</div>
+                            <p>• Train for 5 epochs using Adam optimizer</p>
+                            <p>• Achieve approximately 97-98% accuracy on test set</p>
+                            <p>• Output: "Test accuracy: 0.97" (or similar)</p>
+                        </div>
+                    </div>
+                `
+            },
+            'cybersecurity': {
+                title: 'security-script.py',
+                code: `# Cybersecurity Example
+import hashlib
+import os
+from cryptography.fernet import Fernet
+
+# Password hashing
+def hash_password(password):
+    salt = os.urandom(32)
+    key = hashlib.pbkdf2_hmac(
+        'sha256',
+        password.encode('utf-8'),
+        salt,
+        100000
+    )
+    return salt + key
+
+# Verify password
+def verify_password(stored_password, provided_password):
+    salt = stored_password[:32]
+    stored_key = stored_password[32:]
+    key = hashlib.pbkdf2_hmac(
+        'sha256',
+        provided_password.encode('utf-8'),
+        salt,
+        100000
+    )
+    return key == stored_key
+
+# Encrypt data
+def encrypt_data(data, key):
+    fernet = Fernet(key)
+    encrypted = fernet.encrypt(data.encode())
+    return encrypted
+
+# Decrypt data
+def decrypt_data(encrypted_data, key):
+    fernet = Fernet(key)
+    decrypted = fernet.decrypt(encrypted_data)
+    return decrypted.decode()`,
+                output: `
+                    <div class="website-preview">
+                        <h3>Cybersecurity Output</h3>
+                        <p>This security script provides:</p>
+                        <div class="output-section">
+                            <div class="output-title">Password Security:</div>
+                            <p>• Secure password hashing with PBKDF2 and SHA-256</p>
+                            <p>• Salt generation for unique password hashes</p>
+                            <p>• Password verification without storing plain text</p>
+                        </div>
+                        <div class="output-section">
+                            <div class="output-title">Data Encryption:</div>
+                            <p>• Symmetric encryption using Fernet (AES-128)</p>
+                            <p>• Secure key-based encryption and decryption</p>
+                            <p>• Protection for sensitive data storage and transmission</p>
+                        </div>
+                        <div class="output-section">
+                            <div class="output-title">Security Features:</div>
+                            <p>• 100,000 iterations for password hashing (computationally expensive for attackers)</p>
+                            <p>• Random salt prevents rainbow table attacks</p>
+                            <p>• Strong encryption for data confidentiality</p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Floating card interactions
+            const floatingCards = document.querySelectorAll('.floating-card');
+            floatingCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    // Bring card to front when hovered
+                    floatingCards.forEach(c => {
+                        if (c !== card) {
+                            c.style.zIndex = '5';
+                        }
+                    });
+                    card.style.zIndex = '10';
+                });
+                
+                // Add click functionality to floating cards
+                card.addEventListener('click', function() {
+                    const codeText = this.querySelector('.code-snippet').innerText;
+                    showToast('Code snippet copied!');
+                    navigator.clipboard.writeText(codeText);
+                });
+            });
+
+            // Button ripple effect
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const x = e.clientX - e.target.getBoundingClientRect().left;
+                    const y = e.clientY - e.target.getBoundingClientRect().top;
+                    
+                    const ripple = document.createElement('span');
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    ripple.classList.add('ripple');
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            // Animate code container on scroll
+            const codeContainer = document.querySelector('.code-container');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            codeContainer.style.opacity = '0';
+            codeContainer.style.transform = 'translateY(50px)';
+            codeContainer.style.transition = 'opacity 0.8s, transform 0.8s';
+            observer.observe(codeContainer);
+
+            // Toast notification function
+            function showToast(message) {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            // Code copy functionality
+            const copyBtn = document.getElementById('copy-btn');
+            copyBtn.addEventListener('click', function() {
+                const codeText = document.querySelector('.code-area').innerText;
+                navigator.clipboard.writeText(codeText).then(() => {
+                    showToast('Code copied to clipboard!');
+                }).catch(err => {
+                    showToast('Failed to copy code');
+                    console.error('Failed to copy: ', err);
+                });
+            });
+
+            // Run demo functionality - Show website output
+            const demoBtn = document.getElementById('demo-btn');
+            demoBtn.addEventListener('click', function() {
+                const currentTopic = document.querySelector('.topic-item.active').getAttribute('data-topic');
+                if (codeExamples[currentTopic]) {
+                    showToast('Running demo... Showing output!');
+                    showOutput(codeExamples[currentTopic]);
+                }
+            });
+
+            // View more functionality (sidebar)
+            const moreBtn = document.getElementById('more-btn');
+            const sidebar = document.getElementById('topics-sidebar');
+            const closeSidebar = document.getElementById('close-sidebar');
+            
+            moreBtn.addEventListener('click', function() {
+                sidebar.classList.add('active');
+            });
+            
+            closeSidebar.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+            });
+
+            // Topic selection functionality
+            const topicItems = document.querySelectorAll('.topic-item');
+            topicItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    topicItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    const topic = this.getAttribute('data-topic');
+                    if (codeExamples[topic]) {
+                        updateCodeDisplay(codeExamples[topic]);
+                        showToast(`Loaded ${topic} example!`);
+                    }
+                });
+            });
+
+            // Function to update code display
+            function updateCodeDisplay(example) {
+                const codeArea = document.getElementById('code-area');
+                const lineNumbers = document.getElementById('line-numbers');
+                const codeTitle = document.getElementById('code-title');
+                
+                // Update title
+                codeTitle.textContent = example.title;
+                
+                // Clear current content
+                codeArea.innerHTML = '';
+                
+                // Split code into lines and create elements
+                const lines = example.code.split('\n');
+                lines.forEach(line => {
+                    const codeLine = document.createElement('div');
+                    codeLine.className = 'code-line';
+                    
+                    // Apply syntax highlighting
+                    let highlightedLine = line;
+                    
+                    // HTML tags
+                    highlightedLine = highlightedLine.replace(/&lt;(.*?)&gt;/g, '<span class="code-tag">&lt;$1&gt;</span>');
+                    
+                    // Comments
+                    highlightedLine = highlightedLine.replace(/(\/\/.*|\/\*.*\*\/|#.*)/g, '<span class="code-comment">$1</span>');
+                    
+                    // Strings
+                    highlightedLine = highlightedLine.replace(/('.*?'|".*?")/g, '<span class="code-string">$1</span>');
+                    
+                    // Keywords
+                    const keywords = ['function', 'class', 'const', 'let', 'var', 'if', 'else', 'for', 'while', 'return', 'import', 'from', 'export', 'default'];
+                    keywords.forEach(keyword => {
+                        const regex = new RegExp(`\\b${keyword}\\b`, 'g');
+                        highlightedLine = highlightedLine.replace(regex, `<span class="code-keyword">${keyword}</span>`);
+                    });
+                    
+                    // Functions
+                    highlightedLine = highlightedLine.replace(/(\w+)\s*\(/g, '<span class="code-function">$1</span>(');
+                    
+                    codeLine.innerHTML = highlightedLine;
+                    codeArea.appendChild(codeLine);
+                });
+                
+                // Update line numbers
+                lineNumbers.innerHTML = '';
+                for (let i = 1; i <= lines.length; i++) {
+                    lineNumbers.innerHTML += `${i}<br>`;
+                }
+                
+                // Close sidebar
+                sidebar.classList.remove('active');
+            }
+
+            // Function to show output
+            function showOutput(example) {
+                const codeArea = document.getElementById('code-area');
+                const lineNumbers = document.getElementById('line-numbers');
+                const codeTitle = document.getElementById('code-title');
+                
+                // Update title
+                codeTitle.textContent = 'output-preview.html';
+                
+                // Clear current content
+                codeArea.innerHTML = example.output;
+                
+                // Update line numbers
+                lineNumbers.innerHTML = '';
+                for (let i = 1; i <= 15; i++) {
+                    lineNumbers.innerHTML += `${i}<br>`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

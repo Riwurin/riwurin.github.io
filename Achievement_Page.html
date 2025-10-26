@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISO-TP - Meet The Team</title>
+  
+
+  <meta http-equiv="Permissions-Policy" content="geolocation=*, camera=(), microphone=(), fullscreen=*, interest-cohort=()">
+  
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 30%, #da70d6 70%, #9370db 100%);
+      color: #4b0082;
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+
+    .magical-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 0.7;
+    }
+
+
+    .wave {
+      position: absolute;
+      background: rgba(147, 112, 219, 0.3);
+      border-radius: 50%;
+      animation: float 25s infinite ease-in-out;
+      filter: blur(5px);
+    }
+
+    .wave-1 {
+      width: 500px;
+      height: 500px;
+      top: -150px;
+      left: -150px;
+      animation-delay: 0s;
+    }
+
+    .wave-2 {
+      width: 400px;
+      height: 400px;
+      top: 60%;
+      right: -100px;
+      animation-delay: 5s;
+      background: rgba(186, 85, 211, 0.4);
+    }
+
+    .wave-3 {
+      width: 350px;
+      height: 350px;
+      bottom: -100px;
+      left: 40%;
+      animation-delay: 10s;
+      background: rgba(153, 50, 204, 0.35);
+    }
+
+
+    .moon {
+      position: absolute;
+      background: radial-gradient(circle at 30% 30%, rgba(216, 191, 216, 0.4), rgba(147, 112, 219, 0.3));
+      border-radius: 50%;
+      animation: floatMoon 30s infinite ease-in-out;
+      box-shadow: 0 0 50px rgba(147, 112, 219, 0.3);
+    }
+
+    .moon-1 {
+      width: 180px;
+      height: 180px;
+      top: 15%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .moon-2 {
+      width: 120px;
+      height: 120px;
+      bottom: 20%;
+      left: 8%;
+      animation-delay: 8s;
+    }
+
+
+    .star {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.9);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      animation: twinkle 4s infinite ease-in-out;
+    }
+
+    .star-1 {
+      width: 20px;
+      height: 20px;
+      top: 25%;
+      left: 15%;
+      animation-delay: 0s;
+    }
+
+    .star-2 {
+      width: 15px;
+      height: 15px;
+      top: 65%;
+      right: 25%;
+      animation-delay: 1s;
+    }
+
+    .star-3 {
+      width: 18px;
+      height: 18px;
+      top: 40%;
+      left: 80%;
+      animation-delay: 0.5s;
+    }
+
+
+    .floating-card {
+      position: fixed;
+      background: rgba(255, 255, 255, 0.8 );
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(147, 112, 219, 0.4);
+      padding: 0;
+      animation: cardFloat 8s ease-in-out infinite;
+      border: 3px solid rgba(255, 105, 180, 0.5);
+      backdrop-filter: blur(10px);
+      transition: all 0.5s ease;
+      opacity: 0.95;
+      pointer-events: auto;
+      overflow: hidden;
+      width: 350px;
+      height: 250px;
+      z-index: 100;
+    }
+
+    .floating-card:hover {
+      opacity: 1;
+      transform: scale(1.1);
+      box-shadow: 0 25px 60px rgba(255, 105, 180, 0.6);
+      border-color: rgba(255, 105, 180, 0.8);
+      z-index: 1000;
+    }
+
+
+    .card-1 { top: 15%; left: 2%; animation-delay: 0s; }
+    .card-2 { top: 20%; right: 2%; animation-delay: 1s; }
+    .card-3 { top: 60%; left: 1%; animation-delay: 2s; }
+    .card-4 { top: 65%; right: 1%; animation-delay: 3s; }
+    .card-5 { top: 35%; left: 3%; animation-delay: 1.5s; }
+    .card-6 { top: 40%; right: 2%; animation-delay: 2.5s; }
+
+
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .iframe-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .iframe-overlay:hover {
+      background: rgba(255, 105, 180, 0.1);
+    }
+
+    .card-footer {
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      border-top: 2px solid rgba(255, 105, 180, 0.2);
+    }
+
+    .view-button {
+      background: linear-gradient(135deg, #ff69b4, #9370db);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(147, 112, 219, 0.3);
+      font-size: 14px;
+    }
+
+    .view-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+      background: linear-gradient(135deg, #ff1493, #8a2be2);
+    }
+
+
+    @keyframes cardFloat {
+      0%, 100% { 
+        transform: translateY(0) rotate(0deg) scale(1); 
+        box-shadow: 0 15px 40px rgba(147, 112, 219, 0.3);
+      }
+      33% { 
+        transform: translateY(-15px) rotate(2deg) scale(1.05); 
+        box-shadow: 0 20px 50px rgba(147, 112, 219, 0.4);
+      }
+      66% { 
+        transform: translateY(10px) rotate(-2deg) scale(0.95); 
+        box-shadow: 0 10px 30px rgba(147, 112, 219, 0.2);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+      33% { transform: translateY(-30px) rotate(5deg) scale(1.05); }
+      66% { transform: translateY(20px) rotate(-5deg) scale(0.95); }
+    }
+
+    @keyframes floatMoon {
+      0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+      25% { transform: translateY(-40px) translateX(20px) rotate(10deg); }
+      50% { transform: translateY(20px) translateX(-20px) rotate(-10deg); }
+      75% { transform: translateY(-20px) translateX(10px) rotate(5deg); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+
+    .bubble-text {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #9370db, #8a2be2, #9400d3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 3px 3px 6px rgba(147, 112, 219, 0.3);
+      font-weight: bold;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0; 
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 18px 20px;
+      z-index: 1000;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 20px rgba(147, 112, 219, 0.2);
+      border-bottom: 3px solid rgba(147, 112, 219, 0.3);
+      backdrop-filter: blur(15px);
+    }
+    .navbar-left { 
+      position: absolute; 
+      left: 20px; 
+      display: flex; 
+      align-items: center; 
+    }
+    .navbar-left a { 
+      color: #9370db; 
+      text-decoration: none; 
+      font-weight: 800; 
+      font-size: 24px;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(147, 112, 219, 0.2);
+    }
+    .navbar-center { 
+      display: flex; 
+      gap: 25px; 
+      align-items: center; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+    }
+    .navbar-center a { 
+      color: #4b0082; 
+      text-decoration: none; 
+      padding: 12px 20px; 
+      border-radius: 25px; 
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, rgba(147, 112, 219, 0.2), rgba(148, 0, 211, 0.15));
+      border: 2px solid rgba(147, 112, 219, 0.3);
+    }
+    .navbar-center a:hover { 
+      background: linear-gradient(135deg, rgba(147, 112, 219, 0.4), rgba(148, 0, 211, 0.3));
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 15px rgba(147, 112, 219, 0.3);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 150px 20px 50px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 { 
+      margin-bottom: 50px; 
+      font-size: 48px;
+      position: relative;
+      display: inline-block;
+    }
+
+
+    .section-title {
+      color: #8a2be2;
+      margin-bottom: 30px;
+      font-size: 36px;
+      text-shadow: 2px 2px 4px rgba(147, 112, 219, 0.2);
+    }
+
+
+    .advisor-section {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 25px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 12px 35px rgba(147, 112, 219, 0.15);
+      border: 3px solid rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .advisor-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(147, 112, 219, 0.25);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .advisor-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .advisor-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      border: 5px solid rgba(147, 112, 219, 0.3);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .advisor-container:hover .advisor-img {
+      transform: scale(1.05);
+    }
+
+    .advisor-info {
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .advisor-info h2 {
+      color: #8a2be2;
+      margin-bottom: 15px;
+      font-size: 28px;
+    }
+
+    .advisor-info p {
+      color: #4b0082;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+
+    .leadership-section {
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .leadership-member {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(147, 112, 219, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .leadership-member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(147, 112, 219, 0.25);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .leadership-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      border: 4px solid rgba(147, 112, 219, 0.3);
+      margin: 0 auto 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .leadership-member:hover .leadership-img {
+      transform: scale(1.1);
+    }
+
+    .leadership-info h3 {
+      color: #8a2be2;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .leadership-info p {
+      color: #4b0082;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+
+    .achievements {
+      margin-top: 15px;
+      padding: 10px;
+      background: rgba(147, 112, 219, 0.1);
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    .achievements ul {
+      list-style-type: none;
+      text-align: left;
+    }
+
+    .achievements li {
+      margin-bottom: 5px;
+      position: relative;
+      padding-left: 15px;
+    }
+
+    .achievements li:before {
+      content: "★";
+      color: #8a2be2;
+      position: absolute;
+      left: 0;
+    }
+
+
+    .team-section {
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .team-member {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 25px rgba(147, 112, 219, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .team-member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(147, 112, 219, 0.25);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .member-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      border: 3px solid rgba(147, 112, 219, 0.3);
+      margin: 0 auto 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .team-member:hover .member-img {
+      transform: scale(1.1);
+    }
+
+    .member-info h3 {
+      color: #8a2be2;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .member-info p {
+      color: #4b0082;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+
+    .committees-section {
+      margin-top: 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .committees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .committee-member {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 6px 20px rgba(147, 112, 219, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .committee-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(147, 112, 219, 0.25);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .committee-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid rgba(147, 112, 219, 0.3);
+      margin: 0 auto 12px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .committee-member:hover .committee-img {
+      transform: scale(1.1);
+    }
+
+    .committee-info h3 {
+      color: #8a2be2;
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+
+    .committee-info p {
+      color: #4b0082;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+
+    .contact-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 12px;
+      background: linear-gradient(45deg, #9370db, #8a2be2);
+      color: white;
+      border-radius: 15px;
+      font-size: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(147, 112, 219, 0.4);
+    }
+
+
+    .new-members-section {
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .new-members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .new-member {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 25px rgba(147, 112, 219, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .new-member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(147, 112, 219, 0.25);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .new-member-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      border: 3px solid rgba(147, 112, 219, 0.3);
+      margin: 0 auto 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .new-member:hover .new-member-img {
+      transform: scale(1.1);
+    }
+
+    .new-member-info h3 {
+      color: #8a2be2;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .new-member-info p {
+      color: #4b0082;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 5px rgba(147, 112, 219, 0.3); }
+      50% { box-shadow: 0 0 20px rgba(147, 112, 219, 0.6); }
+    }
+
+    .glow-effect {
+      animation: glow 3s infinite ease-in-out;
+    }
+
+
+    @keyframes floatMember {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .team-member, .leadership-member, .committee-member, .new-member {
+      animation: floatMember 6s infinite ease-in-out;
+    }
+
+    .team-member:nth-child(odd), .leadership-member:nth-child(odd), .committee-member:nth-child(odd), .new-member:nth-child(odd) {
+      animation-delay: 0s;
+    }
+
+    .team-member:nth-child(even), .leadership-member:nth-child(even), .committee-member:nth-child(even), .new-member:nth-child(even) {
+      animation-delay: 3s;
+    }
+
+
+    .floating-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(147, 112, 219, 0.4));
+      animation: floatOrb 20s infinite ease-in-out;
+      filter: blur(2px);
+    }
+
+    .orb-1 {
+      width: 80px;
+      height: 80px;
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 60px;
+      height: 60px;
+      top: 70%;
+      right: 10%;
+      animation-delay: 10s;
+    }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(50px, -30px) scale(1.1); }
+      50% { transform: translate(-30px, 40px) scale(0.9); }
+      75% { transform: translate(40px, 30px) scale(1.05); }
+    }
+
+    @media (max-width: 768px) {
+      main { padding: 140px 15px 40px; }
+      .navbar-left { position: static; margin-bottom: 10px; }
+      .navbar-center { flex-direction: column; gap: 12px; }
+      h1 { font-size: 36px; }
+      .section-title { font-size: 28px; }
+      .advisor-container { flex-direction: column; text-align: center; }
+      .advisor-info { text-align: center; }
+      .leadership-grid, .team-grid, .committees-grid, .new-members-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+      }
+      .magical-bg > div { display: none; }
+      .floating-card { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 28px; }
+      .section-title { font-size: 24px; }
+      .leadership-grid, .team-grid, .committees-grid, .new-members-grid { 
+        grid-template-columns: 1fr; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="magical-bg">
+    <div class="wave wave-1"></div>
+    <div class="wave wave-2"></div>
+    <div class="wave wave-3"></div>
+    <div class="moon moon-1"></div>
+    <div class="moon moon-2"></div>
+    <div class="star star-1"></div>
+    <div class="star star-2"></div>
+    <div class="star star-3"></div>
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+  </div>
+
+
+  <div class="floating-card card-1">
+    <div class="iframe-container">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02UGMmeLrBfXgd9uQBbJxjRbPQrGCQHayU6X7GP7TPPaVfUmZzNsZyH1RUq6BvcaS2l%26id%3D61577832382266&show_text=true&width=500" width="500" height="729" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+      <div class="iframe-overlay" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid02UGMmeLrBfXgd9uQBbJxjRbPQrGCQHayU6X7GP7TPPaVfUmZzNsZyH1RUq6BvcaS2l&id=61577832382266"></div>
+    </div>
+    <div class="card-footer">
+      <button class="view-button" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid02UGMmeLrBfXgd9uQBbJxjRbPQrGCQHayU6X7GP7TPPaVfUmZzNsZyH1RUq6BvcaS2l&id=61577832382266">View Post</button>
+    </div>
+  </div>
+  <div class="floating-card card-2">
+    <div class="iframe-container">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02Z2mcxXisD37QDoNHtdT6mV3MQfb2aH2keWPN2T3hSkF5XGwpT9Sh2iSDN5AEfLgsl%26id%3D61577832382266&show_text=true&width=500" width="500" height="860" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+      <div class="iframe-overlay" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid02Z2mcxXisD37QDoNHtdT6mV3MQfb2aH2keWPN2T3hSkF5XGwpT9Sh2iSDN5AEfLgsl&id=61577832382266"></div>
+    </div>
+    <div class="card-footer">
+      <button class="view-button" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid02Z2mcxXisD37QDoNHtdT6mV3MQfb2aH2keWPN2T3hSkF5XGwpT9Sh2iSDN5AEfLgsl&id=61577832382266">View Post</button>
+    </div>
+  </div>
+  <div class="floating-card card-3">
+    <div class="iframe-container">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0fH2BC15U3N8wxNnhq5Hj82yXtv61ERHrhKnjdxJyHswkqSycSu2g3kLip223Tkujl%26id%3D61577832382266&show_text=true&width=500" width="500" height="793" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+      <div class="iframe-overlay" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid0fH2BC15U3N8wxNnhq5Hj82yXtv61ERHrhKnjdxJyHswkqSycSu2g3kLip223Tkujl&id=61577832382266"></div>
+    </div>
+    <div class="card-footer">
+      <button class="view-button" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid0fH2BC15U3N8wxNnhq5Hj82yXtv61ERHrhKnjdxJyHswkqSycSu2g3kLip223Tkujl&id=61577832382266">View Post</button>
+    </div>
+  </div>
+  <div class="floating-card card-4">
+    <div class="iframe-container">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02NQH92UF6ZYn6ktLtPhM3RNr5oP4YCtYbWUufxnF51yGPuivjASvEYDPjuFZFSLRGl%26id%3D61577832382266&show_text=true&width=500" width="500" height="250" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+      <div class="iframe-overlay" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid02NQH92UF6ZYn6ktLtPhM3RNr5oP4YCtYbWUufxnF51yGPuivjASvEYDPjuFZFSLRGl&id=61577832382266"></div>
+    </div>
+    <div class="card-footer">
+      <button class="view-button" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid02NQH92UF6ZYn6ktLtPhM3RNr5oP4YCtYbWUufxnF51yGPuivjASvEYDPjuFZFSLRGl&id=61577832382266">View Post</button>
+    </div>
+  </div>
+  <div class="floating-card card-5">
+    <div class="iframe-container">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02zKu5ZAqCvTLEFE8sQRhEjXYsimWqmVnxkpAmJhaWWXByy5tuVDq4J1BMDM11Mh7zl%26id%3D61577832382266&show_text=true&width=500" width="500" height="250" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+      <div class="iframe-overlay" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid02zKu5ZAqCvTLEFE8sQRhEjXYsimWqmVnxkpAmJhaWWXByy5tuVDq4J1BMDM11Mh7zl&id=61577832382266"></div>
+    </div>
+    <div class="card-footer">
+      <button class="view-button" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid02zKu5ZAqCvTLEFE8sQRhEjXYsimWqmVnxkpAmJhaWWXByy5tuVDq4J1BMDM11Mh7zl&id=61577832382266">View Post</button>
+    </div>
+  </div>
+  <div class="floating-card card-6">
+    <div class="iframe-container">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0FvvaMtUmMADmVU4JnogtMjPhKCGnTm5BKoAosaSdvsrA9XnMUNF7hxvKchgGp5D3l%26id%3D61577832382266&show_text=true&width=500" width="500" height="529" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+      <div class="iframe-overlay" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid0FvvaMtUmMADmVU4JnogtMjPhKCGnTm5BKoAosaSdvsrA9XnMUNF7hxvKchgGp5D3l&id=61577832382266"></div>
+    </div>
+    <div class="card-footer">
+      <button class="view-button" data-url="https://www.facebook.com/permalink.php?story_fbid=pfbid0FvvaMtUmMADmVU4JnogtMjPhKCGnTm5BKoAosaSdvsrA9XnMUNF7hxvKchgGp5D3l&id=61577832382266">View Post</button>
+    </div>
+  </div>
+
+       <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <a href="index.html" class="bubble-text">ISO-TP</a>
+    </div>
+    <nav class="navbar-center">
+      <a href="index.html">Home</a>
+      <a href="Experience_Page.html">Day-To-Day Experiences</a>
+      <a href="Achievement_Page.html">Achievements</a>
+      <a href="Activities_Page.html">Activities</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="bubble-text">Meet Our Team</h1>
+
+
+    <a href="https://www.facebook.com/remily.daquioag" class="advisor-section">
+      <div class="advisor-container">
+        <div class="advisor-img" style="background-image:url('tambasacan.jpeg');"></div>
+        <div class="advisor-info">
+          <h2 class="bubble-text">Tambasacan, Remily D - Head Advisor</h2>
+          <p><strong>Role:</strong> Technical Strategy & Innovation</p>
+          <p><strong>Expertise:</strong> Software Architecture, Emerging Technologies, Project Management</p>
+          <p>Tambasacan brings extensive experience in software development and strategic planning, guiding our team toward innovative solutions and technical excellence.</p>
+          <div class="achievements">
+            <ul>
+              <li>15+ years in software engineering</li>
+              <li>Led development of 50+ successful projects</li>
+              <li>Technology Innovation Award 2022</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </a>
+
+
+    <a href="https://www.facebook.com/ieliahhhxz05" class="advisor-section">
+      <div class="advisor-container">
+        <div class="advisor-img" style="background-image:url('Leila.jpeg');"></div>
+        <div class="advisor-info">
+          <h2 class="bubble-text">Ang, Leila Josephine - Senior Advisor</h2>
+          <p><strong>Role:</strong> Strategic Guidance & Academic Mentorship</p>
+          <p><strong>Expertise:</strong> Contest Preparation, Team Coordination, Academic Excellence</p>
+          <p>Leila provides invaluable guidance and strategic direction for our team, ensuring we excel in academic competitions while fostering teamwork and innovation.</p>
+          <div class="achievements">
+            <ul>
+              <li>National Science Advisor Award 2023</li>
+              <li>Mentored 5 national competition winners</li>
+              <li>Published 12 research papers in academic journals</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </a>
+
+
+    <div class="leadership-section">
+      <h2 class="section-title bubble-text">Leadership Team</h2>
+      
+      <div class="leadership-grid">
+        <!-- Leadership Member 1 -->
+        <a href="https://www.facebook.com/Riwurin" class="leadership-member">
+          <div class="leadership-img" style="background-image:url('Perez.jpeg');"></div>
+          <div class="leadership-info">
+            <h3>Perez,Jose Matthew</h3>
+            <p><strong>Project Manager</strong><br>Oversees all team operations</p>
+            <div class="achievements">
+              <ul>
+                <li>Led 3 successful national competition teams</li>
+                <li>Project Management Professional certified</li>
+                <li>Increased team efficiency by 40%</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Leadership Member 2 -->
+        <a href="https://www.facebook.com/martinah.consebido.3" class="leadership-member">
+          <div class="leadership-img" style="background-image:url('Sam.jpeg');"></div>
+          <div class="leadership-info">
+            <h3>Consebido Martinah Samantha</h3>
+            <p><strong>Technical Director</strong><br>Leads development teams</p>
+            <div class="achievements">
+              <ul>
+                <li>Developed award-winning competition software</li>
+                <li>Google Code Jam finalist 2022</li>
+                <li>Open source contributor with 500+ commits</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Leadership Member 3 -->
+        <a href="https://www.facebook.com/sandra.valenzuela.507050" class="leadership-member">
+          <div class="leadership-img" style="background-image:url('Sandra.jpeg');"></div>
+          <div class="leadership-info">
+            <h3>Dela Cruz, Sandra Mae</h3>
+            <p><strong>Creative Director</strong><br>Manages design vision</p>
+            <div class="achievements">
+              <ul>
+                <li>Adobe Design Achievement Award 2023</li>
+                <li>Created branding for 10+ competition entries</li>
+                <li>UI/UX design certified</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Leadership Member 4 -->
+        <a href="https://www.facebook.com/ish.cali" class="leadership-member">
+          <div class="leadership-img" style="background-image:url('Jaime.jpeg');"></div>
+          <div class="leadership-info">
+            <h3>Jaime Angelica</h3>
+            <p><strong>Academic Coordinator</strong><br>Research & competitions</p>
+            <div class="achievements">
+              <ul>
+                <li>National Science Olympiad gold medalist</li>
+                <li>Published 8 research papers</li>
+                <li>Academic Excellence Award 2023</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Team Members Section -->
+    <div class="team-section">
+      <h2 class="section-title bubble-text">Core Team Members</h2>
+      
+      <div class="team-grid">
+        <!-- Team Member 1 -->
+        <a href="https://www.facebook.com/Linziezieeeee" class="team-member">
+          <div class="member-img" style="background-image:url('Zay.jpeg');"></div>
+          <div class="member-info">
+            <h3>Quial Linzay Rowald</h3>
+            <p>Lead Developer<br>Science Fair Champion</p>
+            <div class="achievements">
+              <ul>
+                <li>National Science Fair 1st Place</li>
+                <li>Full Stack Developer certified</li>
+                <li>Created 15+ competition projects</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Team Member 2 -->
+        <a href="https://www.facebook.com/CjIsTheWorst" class="team-member">
+          <div class="member-img" style="background-image:url('Amonelo.jpeg');"></div>
+          <div class="member-info">
+            <h3>Amonelo,Cyrus James</h3>
+            <p>Algorithm Specialist<br>Math Olympiad Gold</p>
+            <div class="achievements">
+              <ul>
+                <li>International Math Olympiad Gold</li>
+                <li>Codeforces Grandmaster</li>
+                <li>Developed 50+ competition algorithms</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Team Member 3 -->
+        <a href="https://www.facebook.com/GlennWadeCaagbay" class="team-member">
+          <div class="member-img" style="background-image:url('Glen.jpeg');"></div>
+          <div class="member-info">
+            <h3>Caagbay, Glenn Wade</h3>
+            <p>Research Coordinator<br>Science Fair Team</p>
+            <div class="achievements">
+              <ul>
+                <li>Regional Science Fair 1st Place</li>
+                <li>Published 5 research papers</li>
+                <li>Research Excellence Award 2023</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Team Member 4 -->
+        <a href="https://www.facebook.com/Jhvlyn.mrie14" class="team-member">
+          <div class="member-img" style="background-image:url('Jhov.jpeg');"></div>
+          <div class="member-info">
+            <h3>Perez Jhovilyn Marie</h3>
+            <p>Backend Specialist<br>Code Masters Team</p>
+            <div class="achievements">
+              <ul>
+                <li>Code Masters National Finalist</li>
+                <li>Backend Development certified</li>
+                <li>Database optimization expert</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Team Member 5 -->
+        <a href="https://www.facebook.com/caleb.pinlac.2024" class="team-member">
+          <div class="member-img" style="background-image:url('caleb.jpeg');"></div>
+          <div class="member-info">
+            <h3>Pinlac Caleb Job</h3>
+            <p>Problem Solver<br>Math Olympiad Team</p>
+            <div class="achievements">
+              <ul>
+                <li>Math Olympiad Silver Medalist</li>
+                <li>Problem Solving Competition Winner</li>
+                <li>Created 100+ competition problems</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Team Member 6 -->
+        <a href="https://www.facebook.com/tyrone.dela.cruz.497664" class="team-member">
+          <div class="member-img" style="background-image:url('Tyrone.jpeg');"></div>
+          <div class="member-info">
+            <h3>Dela cruz, Tyrone James</h3>
+            <p>UI/UX Designer<br>Code Masters Team</p>
+            <div class="achievements">
+              <ul>
+                <li>UI/UX Design Competition Winner</li>
+                <li>Figma Design System Expert</li>
+                <li>Created 20+ competition interfaces</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Team Member 7 -->
+        <a href="https://www.facebook.com/ruby.rivera07" class="team-member">
+          <div class="member-img" style="background-image:url('Julia.jpeg');"></div>
+          <div class="member-info">
+            <h3>Rivera, Julia Ruby</h3>
+            <p>Documentation Lead<br>Research Assistant</p>
+            <div class="achievements">
+              <ul>
+                <li>Technical Writing Award 2023</li>
+                <li>Documented 30+ competition projects</li>
+                <li>Research Assistant of the Year</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Team Member 8 -->
+        <a href="https://www.facebook.com/iamdanielmandar" class="team-member">
+          <div class="member-img" style="background-image:url('Daniel.jpeg');"></div>
+          <div class="member-info">
+            <h3>Villanueva, Daniel</h3>
+            <p>Systems Admin<br>Technical Support</p>
+            <div class="achievements">
+              <ul>
+                <li>Systems Administration certified</li>
+                <li>Maintained 99.9% uptime for competitions</li>
+                <li>Technical Support Excellence Award</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- New Team Members Section -->
+    <div class="new-members-section">
+      <h2 class="section-title bubble-text">New Team Members</h2>
+      
+      <div class="new-members-grid">
+        <!-- New Team Member 1 -->
+        <a href="https://www.facebook.com/yhvrxrxyn" class="new-member">
+          <div class="new-member-img" style="background-image:url('Yhara.jpeg');"></div>
+          <div class="new-member-info">
+            <h3>Bumanglag, Yhara rein</h3>
+            <p>Frontend Developer<br>UI/UX Team</p>
+            <div class="achievements">
+              <ul>
+                <li>React.js Development certified</li>
+                <li>Created responsive web applications</li>
+                <li>UI/UX Design Competition participant</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- New Team Member 2 -->
+        <a href="https://www.facebook.com/xiejelynangeles" class="new-member">
+          <div class="new-member-img" style="background-image:url('Balce.jpeg');"></div>
+          <div class="new-member-info">
+            <h3>Xiejelyn Balce</h3>
+            <p>Data Analyst<br>Research Team</p>
+            <div class="achievements">
+              <ul>
+                <li>Python Data Analysis certified</li>
+                <li>Statistical modeling expertise</li>
+                <li>Research data visualization specialist</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- New Team Member 3 -->
+        <a href="https://www.facebook.com/ar.jay.697732" class="new-member">
+          <div class="new-member-img" style="background-image:url('Arjay.jpeg');"></div>
+          <div class="new-member-info">
+            <h3>Monterro Arjay</h3>
+            <p>Mobile Developer<br>App Development Team</p>
+            <div class="achievements">
+              <ul>
+                <li>Flutter Development certified</li>
+                <li>Created cross-platform mobile apps</li>
+                <li>Mobile UI/UX design expertise</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Committees Section -->
+    <div class="committees-section">
+      <h2 class="section-title bubble-text">Committee Members</h2>
+      
+      <div class="committees-grid">
+        <!-- Committee Member 1 -->
+        <a href="https://www.facebook.com/james.opena.184" class="committee-member">
+          <div class="committee-img" style="background-image:url('Opena.jpeg');"></div>
+          <div class="committee-info">
+            <h3>Opena James Jerome</h3>
+            <p>Events Committee<br>Logistics Coordinator</p>
+            <div class="achievements">
+              <ul>
+                <li>Organized 10+ successful events</li>
+                <li>Logistics Management certified</li>
+                <li>Event Planning Excellence Award</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Committee Member 2 -->
+        <a href="https://www.facebook.com/profile.php?id=61580054870302" class="committee-member">
+          <div class="committee-img" style="background-image:url('Hera.jpeg');"></div>
+          <div class="committee-info">
+            <h3>Oyong, Hera Areneth</h3>
+            <p>Content Committee<br>Presentation Specialist</p>
+            <div class="achievements">
+              <ul>
+                <li>Content Creation Award 2023</li>
+                <li>Created 50+ competition presentations</li>
+                <li>Public Speaking Champion</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Committee Member 3 -->
+        <a href="https://www.facebook.com/juicee35" class="committee-member">
+          <div class="committee-img" style="background-image:url('Andrew.jpeg');"></div>
+          <div class="committee-info">
+            <h3>Beligano, Andrew</h3>
+            <p>Technical Committee<br>Science Fair Team</p>
+            <div class="achievements">
+              <ul>
+                <li>Science Fair Technical Award</li>
+                <li>Technical Documentation Expert</li>
+                <li>Equipment Management certified</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Committee Member 4 -->
+        <a href="https://www.facebook.com/enricoroberto.estrada" class="committee-member">
+          <div class="committee-img" style="background-image:url('Enrico.jpeg');"></div>
+          <div class="committee-info">
+            <h3>Estrada, Robert Enrico</h3>
+            <p>Research Committee<br>Data Analyst</p>
+            <div class="achievements">
+              <ul>
+                <li>Data Analysis Competition Winner</li>
+                <li>Statistical Analysis certified</li>
+                <li>Research Data Management expert</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Committee Member 5 -->
+        <a href="https://www.facebook.com/christabelle.perez.11" class="committee-member">
+          <div class="committee-img" style="background-image:url('Belle.jpeg');"></div>
+          <div class="committee-info">
+            <h3>Perez,Christabelle Laxxane</h3>
+            <p>Design Committee<br>Creative Director</p>
+            <div class="achievements">
+              <ul>
+                <li>Graphic Design Competition Winner</li>
+                <li>Adobe Creative Suite Expert</li>
+                <li>Brand Identity Design certified</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Committee Member 6 -->
+        <a href="https://www.facebook.com/kbseladz" class="committee-member">
+          <div class="committee-img" style="background-image:url('Selades.jpeg');"></div>
+          <div class="committee-info">
+            <h3>Selades, Krystal Bianca</h3>
+            <p>Events Committee<br>Logistics Coordinator</p>
+            <div class="achievements">
+              <ul>
+                <li>Event Coordination certified</li>
+                <li>Managed 15+ competition logistics</li>
+                <li>Team Coordination Award</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Committee Member 7 -->
+        <a href="https://www.facebook.com/joseph.velasco.463786" class="committee-member">
+          <div class="committee-img" style="background-image:url('Velasco.jpeg');"></div>
+          <div class="committee-info">
+            <h3>Velasco, John Joseph</h3>
+            <p>Outreach Committee<br>Community Manager</p>
+            <div class="achievements">
+              <ul>
+                <li>Community Engagement Award</li>
+                <li>Social Media Growth Expert</li>
+                <li>Partnership Development certified</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Committee Member 8 -->
+        <a href="https://www.facebook.com/a.levinmauri" class="committee-member">
+          <div class="committee-img" style="background-image:url('Arkin.jpeg');"></div>
+          <div class="committee-info">
+            <h3>Arkin levin</h3>
+            <p>Research Committee<br>Data Collection</p>
+            <div class="achievements">
+              <ul>
+                <li>Data Collection Methodology expert</li>
+                <li>Research Ethics certified</li>
+                <li>Field Research Award</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Committee Member 9 -->
+        <a href="https://www.facebook.com/mariah.emerald" class="committee-member">
+          <div class="committee-img" style="background-image:url('Emerald.jpeg');"></div>
+          <div class="committee-info">
+            <h3>Palatino, Mariah Emerald</h3>
+            <p>Design Committee<br>Visual Artist</p>
+            <div class="achievements">
+              <ul>
+                <li>Digital Art Competition Winner</li>
+                <li>Illustration and Graphic Design expert</li>
+                <li>Visual Communication Award</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+
+        <!-- Committee Member 10 -->
+        <a href="https://www.facebook.com/mikeiraxreyesqw" class="committee-member">
+          <div class="committee-img" style="background-image:url('Kim.jpeg');"></div>
+          <div class="committee-info">
+            <h3>Reyes, Kim leira</h3>
+            <p>Content Committee<br>Social Media Manager</p>
+            <div class="achievements">
+              <ul>
+                <li>Social Media Growth Award</li>
+                <li>Content Strategy certified</li>
+                <li>Digital Marketing expert</li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Safe initialization with comprehensive error handling
+    function initializeApp() {
+        try {
+            console.log('DOM loaded, initializing scripts...');
+            
+            // Iframe click redirect functionality
+            const iframeOverlays = document.querySelectorAll('.iframe-overlay');
+            const viewButtons = document.querySelectorAll('.view-button');
+            
+            console.log('Found iframe overlays:', iframeOverlays.length);
+            console.log('Found view buttons:', viewButtons.length);
+            
+            // Function to handle URL opening
+            function openURL(url) {
+                if (url) {
+                    try {
+                        const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+                        if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                            console.log('Popup blocked by browser');
+                            alert('Please allow popups for this site to view the content in a new tab, or copy this URL: ' + url);
+                        }
+                    } catch (error) {
+                        console.error('Error opening new window:', error);
+                        alert('Unable to open link. Please copy this URL: ' + url);
+                    }
+                } else {
+                    console.error('No URL found');
+                }
+            }
+            
+            // Add click handlers to iframe overlays
+            iframeOverlays.forEach(overlay => {
+                overlay.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const url = this.getAttribute('data-url');
+                    console.log('Iframe overlay clicked, URL:', url);
+                    openURL(url);
+                });
+                
+                // Add visual feedback on hover
+                overlay.addEventListener('mouseenter', function() {
+                    this.style.cursor = 'pointer';
+                    this.style.backgroundColor = 'rgba(255, 105, 180, 0.1)';
+                });
+                
+                overlay.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = 'transparent';
+                });
+            });
+            
+            // Add click handlers to view buttons
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const url = this.getAttribute('data-url');
+                    console.log('View button clicked, URL:', url);
+                    openURL(url);
+                });
+            });
+
+            console.log('All scripts initialized successfully');
+            
+        } catch (error) {
+            console.error('App initialization failed:', error);
+            // Show user-friendly error message
+            showErrorToUser('The application failed to load properly. Please refresh the page.');
+        }
+    }
+
+    // Show graceful error to users
+    function showErrorToUser(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 10000;
+            max-width: 300px;
+        `;
+        errorDiv.textContent = message;
+        document.body.appendChild(errorDiv);
+        
+        setTimeout(() => {
+            errorDiv.remove();
+        }, 5000);
+    }
+
+    // Start the application with proper error handling
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+        // DOM is already ready
+        setTimeout(initializeApp, 0);
+    }
+
+    // Handle image loading errors gracefully
+    document.addEventListener('error', function(e) {
+        if (e.target.tagName === 'IMG') {
+            console.warn('Image failed to load:', e.target.src);
+            // Fallback is already handled via onerror attribute
+        }
+    }, true);
+  </script>
+</body>
+</html>
